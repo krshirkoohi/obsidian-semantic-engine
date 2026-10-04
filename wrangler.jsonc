@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "obsidian-semantic-engine",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "observability": {"enabled": false},
+  "ai": {"binding": "AI"},
+  "vectorize": [{"binding": "VECTORIZE", "index_name": "obsidian-semantic-engine"}],
+  "d1_databases": [{"binding": "DB", "database_name": "obsidian-semantic-engine", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations"}],
+  "kv_namespaces": [{"binding": "OAUTH_KV", "id": "00000000000000000000000000000000"}],
+  "durable_objects": {"bindings": [{"name": "MIRROR", "class_name": "MirrorCoordinator"}]},
+  "migrations": [{"tag": "v1", "new_sqlite_classes": ["MirrorCoordinator"]}],
+  "triggers": {"crons": ["*/5 * * * *"]},
+  "vars": {"PUBLIC_URL": "https://configure-before-deploy.example", "GITHUB_REPOSITORY": "owner/private-vault", "GITHUB_BRANCH": "main", "VAULT_NAME": "My Vault", "EXCLUDED_PREFIXES": "Private\nTemplates", "ENABLE_CHATGPT_WRITES": "false"}
+}

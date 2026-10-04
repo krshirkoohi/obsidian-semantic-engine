@@ -1,0 +1,10 @@
+{
+  "id": "semantic-engine",
+  "name": "Semantic Engine",
+  "version": "0.1.0",
+  "minAppVersion": "1.8.0",
+  "description": "Sync Markdown notes with a private GitHub vault and connect a Cloudflare semantic mirror to ChatGPT.",
+  "author": "Kavia Shirkoohi",
+  "authorUrl": "https://github.com/krshirkoohi",
+  "isDesktopOnly": false
+}

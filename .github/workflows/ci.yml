@@ -1,0 +1,52 @@
+name: Test and package
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['0.*', '1.*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run deploy -- --dry-run
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+      - run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semantic-engine
+          path: |
+            artifacts/main.js
+            artifacts/manifest.json
+            artifacts/styles.css
+            artifacts/semantic-engine-*.zip
+            artifacts/SHA256SUMS.txt
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: semantic-engine
+          path: artifacts
+      - name: Check tag and publish assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync("artifacts/manifest.json","utf8")); if(m.version!==process.env.RELEASE_TAG) process.exit(1)'
+          gh release create "$RELEASE_TAG" artifacts/main.js artifacts/manifest.json artifacts/styles.css artifacts/semantic-engine-*.zip artifacts/SHA256SUMS.txt --title "Semantic Engine $RELEASE_TAG" --generate-notes

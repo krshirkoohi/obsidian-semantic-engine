@@ -1,0 +1,42 @@
+{
+  "name": "obsidian-semantic-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build",
+    "dev:worker": "wrangler dev",
+    "deploy": "node scripts/deploy.mjs",
+    "package": "node scripts/package.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "configure:chatgpt": "node scripts/configure-chatgpt.mjs"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "1.2.1",
+    "@modelcontextprotocol/sdk": "1.32.0",
+    "yaml": "2.9.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261004.1",
+    "@types/node": "26.6.4",
+    "@vitest/coverage-v8": "5.0.3",
+    "esbuild": "0.28.2",
+    "fflate": "0.8.3",
+    "jsonc-parser": "3.3.1",
+    "miniflare": "5.20261001.0-alpha",
+    "obsidian": "1.13.1",
+    "typescript": "7.0.2",
+    "vitest": "5.0.3",
+    "wrangler": "4.147.0"
+  },
+  "overrides": {
+    "moment": "2.31.0"
+  }
+}

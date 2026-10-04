@@ -16,3 +16,11 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+.dev.vars*
+!.dev.vars.example
+wrangler.deploy.json
+.wrangler/
+coverage/
+artifacts/
+*.log
+*.credentials.json

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "obsidian-semantic-engine",
+  "version": "0.1.0",
+  "description": "Search an Obsidian vault by meaning, follow note links and read current GitHub revisions through an authenticated Cloudflare mirror.",
+  "author": {"name": "Kavia Shirkoohi", "url": "https://github.com/krshirkoohi"},
+  "homepage": "https://github.com/krshirkoohi/obsidian-semantic-engine",
+  "repository": "https://github.com/krshirkoohi/obsidian-semantic-engine",
+  "license": "MIT",
+  "keywords": ["obsidian", "notes", "search", "mcp"]
+}
