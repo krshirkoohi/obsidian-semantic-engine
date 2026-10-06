@@ -8,7 +8,7 @@ This repository contains an Obsidian desktop/mobile plugin, a Cloudflare Worker,
 
 ## Start here
 
-- **Kourosh, or anyone receiving a configured server:** [Install in Obsidian](docs/INSTALL.md), then [Connect ChatGPT](docs/CHATGPT.md).
+- **Anyone receiving a configured server:** [Install in Obsidian](docs/INSTALL.md), then [Connect ChatGPT](docs/CHATGPT.md).
 - **Deploy your own server:** [Cloudflare setup](docs/DEPLOY.md).
 - **Download:** [GitHub releases](https://github.com/krshirkoohi/obsidian-semantic-engine/releases), including the three Obsidian plugin files, an installation ZIP and checksums.
 - **Develop:** `npm ci && npm run check && npm run deploy -- --dry-run` using Node.js 24.
